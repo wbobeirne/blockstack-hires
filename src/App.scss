@@ -1,0 +1,18 @@
+@import '~reset-css/reset.css';
+@import '~semantic-ui-css/semantic.min.css';
+@import 'src/sass/variables';
+
+// Scaffolding
+body {
+  background: $color-background;
+  box-sizing: border-box;
+  color: $color-text;
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+}
+
+#app {
+  height: 100%;
+}
