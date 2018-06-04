@@ -1,10 +1,15 @@
 import { combineReducers } from 'redux';
-// import account, { State as AccountState } from './account/reducer';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import blockstack, { State as BlockstackState } from './blockstack/reducer';
 
 export interface ReduxState {
-  // account: AccountState;
+  blockstack: BlockstackState;
 }
 
 export default combineReducers<ReduxState>({
-  // account
+  blockstack: persistReducer({
+    key: 'blockstack',
+    storage
+  }, blockstack)
 });

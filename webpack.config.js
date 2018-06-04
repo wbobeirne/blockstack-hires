@@ -4,13 +4,16 @@ const history = require('connect-history-api-fallback');
 const convert = require('koa-connect');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function(env) {
   const isProduction = env === 'production';
-  const srcDir = path.join(__dirname, 'src');
-  const outDir = path.join(__dirname, 'dist');
+  const rootDir = path.resolve(__dirname);
+  const srcDir = path.join(rootDir, 'src');
+  const outDir = path.join(rootDir, 'dist');
+  const staticDir = path.join(rootDir, 'static');
   const assetsDir = path.join(srcDir, 'assets');
-  const modulesDir = path.join(__dirname, 'node_modules');
+  const modulesDir = path.join(rootDir, 'node_modules');
 
   // ====================
   // ====== Entry =======
@@ -103,6 +106,11 @@ module.exports = function(env) {
       inject: true
     }),
 
+    new CopyWebpackPlugin([{
+      from: staticDir,
+      to: outDir,
+    }]),
+
     new webpack.LoaderOptionsPlugin({
       minimize: isProduction,
       debug: !isProduction,
@@ -159,6 +167,13 @@ module.exports = function(env) {
   if (!isProduction) {
     config.serve = {
       add: (app) => {
+        // CORS
+        app.use((ctx, next) => {
+          ctx.set('Access-Control-Allow-Origin', '*');
+          ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+          return next();
+        });
+
         // History API fallback for webpack-serve
         app.use(convert(history()));
       }
