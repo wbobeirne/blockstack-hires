@@ -26,6 +26,13 @@ export function saveResume(resume: Resume) {
   }
 }
 
+export function saveResumeLocal(resume: Resume) {
+  return {
+    type: TypeKeys.SAVE_LOCAL,
+    payload: resume,
+  };
+}
+
 export function fetchResume(username?: string) {
   return function (dispatch: Dispatch<ResumeAction, ReduxState>, getState: () => ReduxState) {
     const state = getState();

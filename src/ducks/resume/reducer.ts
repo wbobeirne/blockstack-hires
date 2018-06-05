@@ -31,6 +31,7 @@ export default function userReducer(
       };
 
     case TypeKeys.SAVE_SUCCESS:
+    case TypeKeys.SAVE_LOCAL:
       return {
         ...state,
         userResume: action.payload,

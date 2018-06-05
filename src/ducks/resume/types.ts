@@ -2,6 +2,7 @@ export enum TypeKeys {
   SAVE = 'RESUME_SAVE',
   SAVE_SUCCESS = 'RESUME_SAVE_SUCCESS',
   SAVE_FAILURE = 'RESUME_SAVE_FAILURE',
+  SAVE_LOCAL = 'RESUME_SAVE_LOCAL',
   FETCH = 'RESUME_FETCH',
   FETCH_SUCCESS = 'RESUME_FETCH_SUCCESS',
   FETCH_FAILURE = 'RESUME_FETCH_FAILURE',
@@ -60,6 +61,12 @@ export interface SaveFailureAction {
 }
 
 
+export interface SaveLocalAction {
+  type: TypeKeys.SAVE_LOCAL;
+  payload: Resume;
+}
+
+
 export interface FetchAction {
   type: TypeKeys.FETCH;
 }
@@ -81,6 +88,7 @@ export type ResumeAction =
   | SaveAction
   | SaveSuccessAction
   | SaveFailureAction
+  | SaveLocalAction
   | FetchAction
   | FetchSuccessAction
   | FetchFailureAction;

@@ -20,6 +20,10 @@ $main-item-margin-bottom: 30px;
   background: var(--resume-bg);
   color: var(--resume-text);
 
+  &-error {
+    text-align: center;
+  }
+
   &-header {
     display: flex;
     margin: -20px -20px 40px;
@@ -143,12 +147,12 @@ $main-item-margin-bottom: 30px;
       line-height: 50px;
       margin-top: 8px;
       border: none;
-      background: linear-gradient(#FFF, #FAFAFA);
+      background: linear-gradient(#FFF, #F9F9F9);
       box-shadow: 0 2px 2px rgba(#000, 0.2),
                   0 0 2px rgba(#000, 0.1);
       text-align: center;
       border-radius: 100%;
-      color: #333;
+      color: $color-text;
       font-size: 16px;
       cursor: pointer;
 
@@ -156,6 +160,11 @@ $main-item-margin-bottom: 30px;
         color: $color-brand;
         box-shadow: 0 2px 2px rgba(#000, 0.3),
                     0 0 2px rgba(#000, 0.2);
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        color: $color-text;
       }
     }
   }

@@ -1,3 +1,9 @@
 .ResumeForm {
   width: 100%;
+
+  &-actions {
+    button:last-child {
+      float: right;
+    }
+  }
 }

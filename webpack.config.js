@@ -143,6 +143,7 @@ module.exports = function(env) {
   const output = {
     path: path.join(__dirname, 'dist'),
     filename: isProduction ? `[name].[chunkhash:6].js` : '[name].js',
+    publicPath: '/',
   };
 
   // The final config

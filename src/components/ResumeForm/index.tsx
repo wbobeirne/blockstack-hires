@@ -9,7 +9,7 @@ import {
   getIsSavingResume,
   getSaveError,
 } from 'ducks/resume/selectors';
-import { fetchResume, saveResume } from 'ducks/resume/actions';
+import { fetchResume, saveResume, saveResumeLocal } from 'ducks/resume/actions';
 import { Resume } from 'ducks/resume/types';
 import { ReduxState } from 'ducks';
 import SingleField from './SingleField';
@@ -137,6 +137,7 @@ interface StateProps {
 interface ActionProps {
   fetchResume: typeof fetchResume;
   saveResume: typeof saveResume;
+  saveResumeLocal: typeof saveResumeLocal;
 }
 
 type Props = StateProps & ActionProps;
@@ -158,7 +159,9 @@ class ResumeForm extends React.Component<Props, State> {
   public state: State = makeInitialState(this.props);
 
   public componentDidMount() {
-    this.props.fetchResume();
+    if (!this.props.resume) {
+      this.props.fetchResume();
+    }
   }
 
   public static getDerivedStateFromProps(props: Props, state: State) {
@@ -194,11 +197,13 @@ class ResumeForm extends React.Component<Props, State> {
 
         <Palette palette={this.state.palette} onChange={this.handleFieldChange}/>
 
-        <Button size="large" primary loading={isSavingResume}>Save Resume</Button>
-        <Link to="/preview">
-          <Button size="large" secondary as="div">Preview</Button>
-        </Link>
-        <Button size="large" negative onClick={this.delete}>Delete</Button>
+        <div className="ResumeForm-actions">
+          <Button size="large" primary loading={isSavingResume}>Save Resume</Button>
+          <Link to="/preview">
+            <Button size="large" as="div" onClick={this.preview}>Preview</Button>
+          </Link>
+          <Button basic size="large" negative onClick={this.delete}>Delete</Button>
+        </div>
 
         <Dimmer active={isFetchingResume || !!fetchError || !!saveError} inverted>
           {isFetchingResume &&
@@ -224,6 +229,10 @@ class ResumeForm extends React.Component<Props, State> {
     this.props.saveResume(this.state);
   };
 
+  private preview = () => {
+    this.props.saveResumeLocal(this.state);
+  };
+
   private delete = (ev: React.FormEvent<any>) => {
     ev.preventDefault();
   };
@@ -238,4 +247,5 @@ export default connect((state: ReduxState) => ({
 }), {
   fetchResume,
   saveResume,
+  saveResumeLocal,
 })(ResumeForm);

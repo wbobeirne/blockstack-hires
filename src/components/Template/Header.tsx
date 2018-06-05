@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
 import { logout, login } from 'ducks/user/actions';
 import { getUser } from 'ducks/user/selectors';
@@ -24,7 +25,9 @@ class Header extends React.Component<Props> {
 
     return (
       <header className="Header">
-        <img className="Header-logo" src={Logo}/>
+        <Link className="Header-logo" to="/">
+          <img className="Header-logo-img" src={Logo}/>
+        </Link>
         {user ? (
           <button className="Header-button" onClick={this.props.logout}>
             Sign out <Icon name="log out"/>

@@ -8,13 +8,22 @@
   line-height: 52px;
   padding: 0 30px;
   background: #FFF;
-  color: #333;
+  color: $color-text;
   box-shadow: 0 0 3px rgba(#000, 0.1);
   border-bottom: 1px solid rgba(#000, 0.2);
   z-index: 1;
 
   &-logo {
-    height: 40px;
+    display: block;
+    height: 36px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &-img {
+      height: 100%;
+    }
   }
 
   &-button {

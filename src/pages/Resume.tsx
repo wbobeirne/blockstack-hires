@@ -27,16 +27,27 @@ type Props = StateProps & ActionProps & RouteComponentProps<{ username?: string 
 
 class Resume extends React.Component<Props> {
   public componentDidMount() {
-    this.props.fetchResume(this.props.username);
+    if (!this.props.resume) {
+      this.props.fetchResume(this.props.username);
+    }
   }
 
   public render() {
     const { isFetchingResume, fetchError, resume, isOwner, username } = this.props;
 
-    if (isFetchingResume || !resume) {
+    if (isFetchingResume) {
       return <Loader size="massive"/>;
     } else if (fetchError) {
-      return <h1>{fetchError}</h1>;
+      return (
+        <div className="Resume-error">
+          <Icon name="exclamation triangle" size="huge"/>
+          <h3 className="Resume-error-text">
+            {fetchError}
+          </h3>
+        </div>
+      );
+    } else if (!resume) {
+      return null;
     }
 
     return (
@@ -144,6 +155,7 @@ class Resume extends React.Component<Props> {
         <div className="Resume-controls">
           {isOwner &&
             <Popup
+              on="hover"
               position="left center"
               content="Edit"
               trigger={
@@ -155,6 +167,7 @@ class Resume extends React.Component<Props> {
           }
 
           <Popup
+            on="hover"
             position="left center"
             content="Print"
             trigger={
@@ -166,16 +179,7 @@ class Resume extends React.Component<Props> {
 
           {username ? (
             <Popup
-              position="left center"
-              content="Must have a username to generate shareable URL"
-              trigger={
-                <button className="Resume-controls-button" disabled>
-                  <Icon name="linkify"/>
-                </button>
-              }
-            />
-          ) : (
-            <Popup
+              on="hover"
               position="left center"
               content="Copy URL"
               trigger={
@@ -184,6 +188,17 @@ class Resume extends React.Component<Props> {
                     <Icon name="linkify"/>
                   </button>
                 </CopyToClipboard>
+              }
+            />
+          ) : (
+            <Popup
+              on="hover"
+              position="left center"
+              content="Must have a Blockstack ID to generate a shareable URL"
+              trigger={
+                <button className="Resume-controls-button" disabled>
+                  <Icon name="linkify"/>
+                </button>
               }
             />
           )}
