@@ -79,12 +79,12 @@ const fields: FieldInfo[] = [{
   }, {
     name: 'startDate',
     label: 'Start date',
-    description: 'e.g. 1/23/14',
+    description: 'e.g. Aug 2015',
     isRequired: true
   }, {
     name: 'endDate',
     label: 'End date',
-    description: 'e.g. 1/23/14, leave blank if current',
+    description: 'e.g. Aug 2015, leave blank if current',
   }, {
     name: 'description',
     label: 'Description',

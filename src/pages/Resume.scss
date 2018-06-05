@@ -19,6 +19,7 @@ $main-item-margin-bottom: 30px;
   padding: 20px;
   background: var(--resume-bg);
   color: var(--resume-text);
+  flex: 1;
 
   &-error {
     text-align: center;
