@@ -3,8 +3,8 @@ import { persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducer';
-import { handleLogin } from './blockstack/actions';
-import { getUser } from './blockstack/selectors';
+import { handleLogin } from './user/actions';
+import { getUser } from './user/selectors';
 
 // Compose middleware
 let middleware = applyMiddleware(thunk);

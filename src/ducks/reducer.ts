@@ -1,15 +1,18 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import blockstack, { State as BlockstackState } from './blockstack/reducer';
+import user, { State as UserState } from './user/reducer';
+import resume, { State as ResumeState } from './resume/reducer';
 
 export interface ReduxState {
-  blockstack: BlockstackState;
+  user: UserState;
+  resume: ResumeState;
 }
 
 export default combineReducers<ReduxState>({
-  blockstack: persistReducer({
-    key: 'blockstack',
+  user: persistReducer({
+    key: 'user',
     storage
-  }, blockstack)
+  }, user),
+  resume
 });

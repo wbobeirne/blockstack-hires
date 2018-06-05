@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import { login } from 'ducks/blockstack/actions';
-import { getIsLoggingIn, getUser } from 'ducks/blockstack/selectors';
+import { login } from 'ducks/user/actions';
+import { getIsLoggingIn, getUser } from 'ducks/user/selectors';
 import { ReduxState } from 'ducks';
 import './Splash.scss';
 
@@ -23,14 +23,15 @@ class Splash extends React.Component<Props> {
     const { user, isLoggingIn } = this.props;
 
     if (user) {
-      return <Redirect to="/home"/>
+      return <Redirect to="/edit"/>
     }
 
     return (
       <div className="Splash">
-        <h2 className="Splash-tag">Connect to more than your node</h2>
+        <h2 className="Splash-tag">Quick, Professional Resumes</h2>
         <p className="Splash-description">
-          Meet people and make connections
+          Create a beautiful resume in minutes. No need for an account, just
+          start building.
         </p>
         <Button
           primary
@@ -39,7 +40,7 @@ class Splash extends React.Component<Props> {
           loading={isLoggingIn}
           onClick={this.props.login}
         >
-          Get Started
+          Make a Resume
         </Button>
       </div>
     );

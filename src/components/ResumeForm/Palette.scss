@@ -1,0 +1,69 @@
+.Palette {
+  position: relative;
+  border: 1px solid rgba(#000, 0.12);
+  border-radius: 4px;
+  padding: 20px 20px;
+  margin: 25px auto;
+
+  &-title {
+    position: absolute;
+    top: 0;
+    padding: 0 8px;
+    background: #FFF;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: 1;
+  }
+
+  &-color {
+    position: relative;
+    display: inline-block;
+    width: 96px;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &-name {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    &-pill {
+      box-shadow: 0 1px 3px rgba(#000, 0.3);
+      border-radius: 4px;
+      display: flex;
+      padding: 4px;
+      cursor: pointer;
+      transition: 100ms ease;
+
+      &:hover {
+        box-shadow: 0 1px 3px rgba(#000, 0.5);
+      }
+
+      &-block {
+        height: 20px;
+        width: 20px;
+        border-radius: 4px;
+        margin-right: 5px;
+        box-shadow: 0 1px 2px rgba(#000, 0.2);
+      }
+    }
+
+    &-picker {
+      position: absolute;
+      display: none;
+      top: 10px;
+      left: 50%;
+      transform: translateY(-100%) translateX(-50%);
+      box-shadow: 0 1px 4px rgba(#000, 0.3);
+      border-radius: 3px;
+      z-index: 100;
+
+      &.is-open {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { ReduxState } from 'ducks';
 import { redirectToSignIn, handlePendingSignIn, signUserOut } from 'blockstack';
-import { TypeKeys, BlockstackAction, User } from './types';
+import { TypeKeys, UserAction, User } from './types';
 
 export function login() {
   redirectToSignIn();
@@ -11,7 +11,7 @@ export function login() {
 }
 
 export function handleLogin() {
-  return function (dispatch: Dispatch<BlockstackAction, ReduxState>) {
+  return function (dispatch: Dispatch<UserAction, ReduxState>) {
     dispatch({ type: TypeKeys.HANDLE_LOGIN });
 
     handlePendingSignIn()

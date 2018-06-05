@@ -1,0 +1,264 @@
+$main-item-margin-bottom: 30px;
+
+@mixin phone-query {
+  @media screen and (max-width: 560px) {
+    @content;
+  }
+}
+
+@mixin tablet-query {
+  @media screen and (max-width: 1120px) {
+    @content;
+  }
+}
+
+.Resume {
+  margin: -40px -30px;
+  padding: 20px;
+  background: var(--resume-bg);
+  color: var(--resume-text);
+
+  &-header {
+    display: flex;
+    margin: -20px -20px 40px;
+    padding: 20px;
+    background: var(--resume-headerBg);
+    justify-content: center;
+    align-items: center;
+
+    @include tablet-query {
+      flex-direction: column;
+    }
+
+    &, a {
+      color: var(--resume-headerText);
+    }
+
+    &-left {
+      max-width: 880px;
+      padding-right: 20px;
+      margin-right: 20px;
+
+      @include tablet-query {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      &-name {
+        font-size: 58px;
+        line-height: 50px;
+        font-weight: 100;
+        margin-bottom: 15px;
+      }
+
+      &-description {
+        font-size: 16px;
+
+        @include phone-query {
+          display: none;
+        }
+      }
+    }
+
+    &-right {
+      width: 220px;
+
+      &-contact {
+        font-size: 18px;
+        margin-bottom: 10px;
+
+        i.icon {
+          display: inline-block;
+          width: 26px;
+          height: 26px;
+          line-height: 26px;
+          background: var(--resume-headerText);
+          color: var(--resume-headerBg);
+          border-radius: 6px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  &-content {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  &-main {
+    margin-bottom: 50px;
+
+    &-title {
+      font-size: 38px;
+      font-weight: 100;
+      margin: 0 0 30px;
+    }
+  }
+
+  &-list {
+    display: flex;
+    margin-bottom: 10px;
+
+    @include tablet-query {
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+
+    &-title {
+      width: 240px;
+
+      @include tablet-query {
+        width: auto;
+      }
+    }
+
+    &-items {
+      &-item {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 16px;
+        height: 36px;
+        line-height: 36px;
+        background: var(--resume-listBg);
+        color: var(--resume-listText);
+        padding: 0 10px;
+        border-radius: 2px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    &-button {
+      display: block;
+      height: 50px;
+      width: 50px;
+      line-height: 50px;
+      margin-top: 8px;
+      border: none;
+      background: linear-gradient(#FFF, #FAFAFA);
+      box-shadow: 0 2px 2px rgba(#000, 0.2),
+                  0 0 2px rgba(#000, 0.1);
+      text-align: center;
+      border-radius: 100%;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        color: #30F;
+        box-shadow: 0 2px 2px rgba(#000, 0.3),
+                    0 0 2px rgba(#000, 0.2);
+      }
+    }
+  }
+}
+
+.MainItem {
+  position: relative;
+  margin-bottom: $main-item-margin-bottom;
+  display: flex;
+
+  &-side {
+    width: 220px;
+
+    @include tablet-query {
+      display: none;
+    }
+
+    &-date {
+      font-size: 14px;
+      opacity: 0.5;
+      line-height: 38px;
+    }
+  }
+
+  &-content {
+    flex: 1;
+
+    &-title {
+      font-size: 28px;
+      line-height: 38px;
+      margin-bottom: 0;
+      opacity: 0.9;
+    }
+
+    &-subtitle {
+      font-size: 20px;
+      margin: 0;
+      font-weight: bold;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+
+    &-date {
+      display: none;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      opacity: 0.5;
+
+      @include tablet-query {
+        display: block;
+      }
+    }
+
+    &-description {
+      font-size: 16px;
+
+      ul {
+        padding-left: 20px;
+        list-style: disc;
+      }
+    }
+  }
+
+  // Draw timeline
+  &.has-line {
+    &:after,
+    &:before {
+      position: absolute;
+      content: '';
+      background: var(--resume-timeline);
+
+      @include tablet-query {
+        display: none;
+      }
+    }
+
+    &:after {
+      top: 10px;
+      left: 180px;
+      width: 18px;
+      height: 18px;
+      border-radius: 100%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 2px var(--resume-bg),
+                  0 0 0 4px var(--resume-timeline);
+    }
+
+    &:before {
+      top: 10px;
+      left: 180px;
+      bottom: -($main-item-margin-bottom + 10);
+      width: 1px;
+    }
+
+    &:last-child:before {
+      display: none;
+    }
+  }
+}
+
+// Hide some things during print
+@media print {
+  .Header,
+  .Footer {
+    display: none;
+  }
+}

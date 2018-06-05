@@ -1,0 +1,37 @@
+.MultiField {
+  position: relative;
+  border: 1px solid rgba(#000, 0.12);
+  border-radius: 4px;
+  padding: 20px 20px;
+  margin: 25px auto;
+
+  &-label {
+    position: absolute;
+    top: 0;
+    padding: 0 8px;
+    background: #FFF;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: 1;
+  }
+
+  &-fields {
+    &-field {
+      &.is-single {
+        margin-bottom: 5px;
+
+        &:last-child {
+          margin-bottom: 20px;
+        }
+      }
+
+      &.is-form {
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(#000, 0.12);
+        border-radius: 4px;
+        background: #FAFAFA;
+      }
+    }
+  }
+}

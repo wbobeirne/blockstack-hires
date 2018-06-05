@@ -1,16 +1,14 @@
 import { User as BlockstackUser, Profile as BlockstackProfile } from 'blockstack';
 
 export enum TypeKeys {
-  LOGIN = 'BLOCKSTACK_LOGIN',
-  HANDLE_LOGIN = 'BLOCKSTACK_HANDLE_LOGIN',
-  HANDLE_LOGIN_SUCCESS = 'BLOCKSTACK_HANDLE_LOGIN_SUCCESS',
-  HANDLE_LOGIN_FAILURE = 'BLOCKSTACK_HANDLE_LOGIN_FAILURE',
-  LOGOUT = 'BLOCKSTACK_LOGOUT'
+  LOGIN = 'USER_LOGIN',
+  HANDLE_LOGIN = 'USER_HANDLE_LOGIN',
+  HANDLE_LOGIN_SUCCESS = 'USER_HANDLE_LOGIN_SUCCESS',
+  HANDLE_LOGIN_FAILURE = 'USER_HANDLE_LOGIN_FAILURE',
+  LOGOUT = 'USER_LOGOUT'
 }
 
-export interface Profile extends BlockstackProfile {
-
-};
+export interface Profile extends BlockstackProfile {};
 
 export type User = BlockstackUser<Profile>;
 
@@ -38,7 +36,7 @@ export interface LogoutAction {
   type: TypeKeys.LOGOUT;
 }
 
-export type BlockstackAction =
+export type UserAction =
   | LoginAction
   | HandleLoginAction
   | HandleLoginSuccessAction

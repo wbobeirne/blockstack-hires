@@ -1,5 +1,10 @@
 @import 'src/sass/variables';
 
 .Footer {
-
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #F3F3F3;
+  border-top: 1px solid rgba(#000, 0.2);
 }

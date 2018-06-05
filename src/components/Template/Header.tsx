@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
-import { logout } from 'ducks/blockstack/actions';
-import { getUser } from 'ducks/blockstack/selectors';
+import { logout } from 'ducks/user/actions';
+import { getUser } from 'ducks/user/selectors';
 import { ReduxState } from 'ducks';
 import './Header.scss';
 
@@ -23,7 +23,7 @@ class Header extends React.Component<Props> {
     return (
       <header className="Header">
         <div className="Header-logo">
-          BlockPeopleMeet
+          HiRes
         </div>
         {user &&
           <button className="Header-logout" onClick={this.props.logout}>

@@ -6,8 +6,10 @@ import { ReduxState, persistor } from './ducks';
 import { Router, Switch, Route } from 'react-router-dom';
 import history from 'libs/history';
 import Template from './components/Template';
+import AuthedRoute from './components/AuthedRoute';
 import Splash from './pages/Splash';
-import Home from './pages/Home';
+import EditResume from './pages/EditResume';
+import Resume from './pages/Resume';
 import FourOhFour from './pages/FourOhFour';
 import './App.scss';
 
@@ -24,7 +26,9 @@ export default class App extends React.Component<Props> {
             <Template>
               <Switch>
                 <Route path="/" component={Splash} exact={true} />
-                <Route path="/home" component={Home} exact={true} />
+                <AuthedRoute path="/edit" component={EditResume} exact={true} />
+                <AuthedRoute path="/preview" component={Resume} exact={true} />
+                <Route path="/resume/:username" component={Resume} />
                 <Route component={FourOhFour} />
               </Switch>
             </Template>

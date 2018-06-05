@@ -1,11 +1,11 @@
 import { ReduxState } from 'ducks';
 
 export function getIsLoggingIn(state: ReduxState) {
-  return state.blockstack.isLoggingIn;
+  return state.user.isLoggingIn;
 }
 
 export function getUser(state: ReduxState) {
-  return state.blockstack.user;
+  return state.user.user;
 }
 
 export function getUserProfile(state: ReduxState) {

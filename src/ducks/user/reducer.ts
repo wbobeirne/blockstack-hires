@@ -1,4 +1,4 @@
-import { TypeKeys, BlockstackAction, User } from './types';
+import { TypeKeys, UserAction, User } from './types';
 
 export interface State {
   isLoggingIn: boolean;
@@ -10,9 +10,9 @@ export const INITIAL_STATE: State = {
   user: null,
 }
 
-export default function blockstackReducer(
+export default function userReducer(
   state: State = INITIAL_STATE,
-  action: BlockstackAction,
+  action: UserAction,
 ): State {
   switch (action.type) {
     case TypeKeys.LOGIN:
