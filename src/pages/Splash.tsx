@@ -28,19 +28,19 @@ class Splash extends React.Component<Props> {
 
     return (
       <div className="Splash">
+        <div className="Splash-bg"/>
         <h2 className="Splash-tag">Quick, Professional Resumes</h2>
         <p className="Splash-description">
-          Create a beautiful resume in minutes. No need for an account, just
-          start building.
+          Create a beautiful resume in minutes, with data that you own completely
         </p>
         <Button
           primary
           className="Splash-start"
-          size="huge"
+          size="massive"
           loading={isLoggingIn}
           onClick={this.props.login}
         >
-          Make a Resume
+          Get Started with Blockstack
         </Button>
       </div>
     );

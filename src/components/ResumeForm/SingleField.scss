@@ -1,3 +1,5 @@
+@import 'src/sass/variables';
+
 .SingleField {
   margin-bottom: 10px;
 
@@ -7,5 +9,10 @@
     padding-left: 2px;
     font-size: 12px;
     margin-bottom: 2px;
+
+    &-required {
+      margin-left: 2px;
+      color: $color-required;
+    }
   }
 }

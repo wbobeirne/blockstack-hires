@@ -15,10 +15,12 @@
   min-height: 100%;
 
   &-content {
+    position: relative;
     flex: 1;
     padding: 40px 30px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     animation: content-fade-in 300ms ease 1;
   }
 }

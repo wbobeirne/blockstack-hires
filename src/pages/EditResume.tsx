@@ -18,7 +18,7 @@ class EditResume extends React.Component<Props> {
     return (
       <div className="EditResume">
         <h1 className="EditResume-title">
-          Hello, {user.profile.name || 'Stranger'}
+          Let's Get Started {user.username}
         </h1>
         <p className="EditResume-description">
           Fill out as much information as you’d like, only the fields marked

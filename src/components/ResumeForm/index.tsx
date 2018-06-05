@@ -43,14 +43,14 @@ const fields: FieldInfo[] = [{
   label: 'Full name',
   isRequired: true,
 }, {
-  name: 'location',
-  label: 'Location',
-  description: 'e.g. Brooklyn, New York',
-}, {
   name: 'email',
   label: 'Email',
   description: 'example@mail.com',
   isRequired: true,
+}, {
+  name: 'location',
+  label: 'Location',
+  description: 'e.g. Brooklyn, New York',
 }, {
   name: 'phone',
   label: 'Phone Number',

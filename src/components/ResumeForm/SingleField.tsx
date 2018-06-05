@@ -11,12 +11,15 @@ type Props = (FieldInfo | SubFieldInfo) & {
 
 export default class SingleField extends React.PureComponent<Props> {
   public render() {
-    const { value, label, hideLabel, description, options, isTextarea } = this.props;
+    const { value, label, hideLabel, description, options, isTextarea, isRequired } = this.props;
 
     return (
-      <div className="SingleField Field">
+      <div className="SingleField">
         {!hideLabel && label &&
-          <label className="SingleField-label Field-label">{label}</label>
+          <label className="SingleField-label">
+            {label}
+            {isRequired && <span className="SingleField-label-required">*</span>}
+          </label>
         }
         {options ? (
           <Select

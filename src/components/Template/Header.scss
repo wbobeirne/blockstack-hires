@@ -3,12 +3,30 @@
 .Header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 52px;
   line-height: 52px;
-  padding: 0 10px;
+  padding: 0 30px;
   background: #FFF;
   color: #333;
   box-shadow: 0 0 3px rgba(#000, 0.1);
   border-bottom: 1px solid rgba(#000, 0.2);
   z-index: 1;
+
+  &-logo {
+    height: 40px;
+  }
+
+  &-button {
+    background: none;
+    height: 38px;
+    border: 1px solid rgba(#000, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(#000, 0.03);
+      border-color: rgba(#000, 0.3);
+    }
+  }
 }

@@ -1,3 +1,5 @@
+@import 'src/sass/variables';
+
 .EditResume {
   background: #FFF;
   padding: 20px 30px;
@@ -17,7 +19,7 @@
     margin-bottom: 30px;
 
     &-required {
-      color: #F0F;
+      color: $color-required;
     }
   }
 }

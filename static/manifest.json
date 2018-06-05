@@ -1,7 +1,7 @@
 {
-  "name": "Block People Meet",
+  "name": "HiRes",
   "start_url": "https://block-people-meet.herokuapp.com/",
-  "description": "Connect with other blockchain enthusiasts",
+  "description": "Quick, professional resumes",
   "icons": [{
     "src": "/app-icon-512.png",
     "sizes": "512x512",

@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
-import { logout } from 'ducks/user/actions';
+import { logout, login } from 'ducks/user/actions';
 import { getUser } from 'ducks/user/selectors';
 import { ReduxState } from 'ducks';
+import Logo from 'assets/logo.svg';
 import './Header.scss';
 
 interface StateProps {
@@ -11,6 +12,7 @@ interface StateProps {
 }
 
 interface ActionProps {
+  login: typeof login;
   logout: typeof logout;
 }
 
@@ -22,14 +24,16 @@ class Header extends React.Component<Props> {
 
     return (
       <header className="Header">
-        <div className="Header-logo">
-          HiRes
-        </div>
-        {user &&
-          <button className="Header-logout" onClick={this.props.logout}>
-            Log Out <Icon name="log out"/>
+        <img className="Header-logo" src={Logo}/>
+        {user ? (
+          <button className="Header-button" onClick={this.props.logout}>
+            Sign out <Icon name="log out"/>
           </button>
-        }
+        ) : (
+          <button className="Header-button" onClick={this.props.login}>
+            Sign in <Icon name="user circle"/>
+          </button>
+        )}
       </header>
     );
   }
@@ -38,5 +42,6 @@ class Header extends React.Component<Props> {
 export default connect((state: ReduxState) => ({
   user: getUser(state)
 }), {
-  logout
+  logout,
+  login,
 })(Header);
