@@ -30,19 +30,27 @@ export default class MultiField extends React.PureComponent<Props, State> {
     const { label, fields, value } = this.props;
     const { numFields } = this.state;
     const FieldComponent = !!fields ? FormField : SingleField;
+    const defaultValue = !!fields ? FormField : {};
     const fieldType = !!fields ? 'form' : 'single';
-    const defaultValue = !!fields ? {} : '';
     const fieldElements = [];
 
     for (let i = 0; i < numFields; i++) {
+      console.log(value[i] || '');
       fieldElements.push(
         <div key={i} className={`MultiField-fields-field is-${fieldType}`}>
           <FieldComponent
             {...this.props}
             hideLabel={true}
             value={value[i] || defaultValue}
-            key={i}
             onChange={(_: any, v: any) => this.handleFieldChange(i, v)}
+          />
+          <Button
+            negative
+            size={fieldType === 'form' ? 'mini' : 'medium'}
+            type="button"
+            className={`MultiField-fields-field-remove is-${fieldType}`}
+            onClick={() => this.removeEntry(i)}
+            icon="close"
           />
         </div>
       );
@@ -71,5 +79,11 @@ export default class MultiField extends React.PureComponent<Props, State> {
   private addEntry = (ev: React.MouseEvent<HTMLButtonElement>) => {
     ev.preventDefault();
     this.setState({ numFields: this.state.numFields + 1 });
+  };
+
+  private removeEntry = (idx: number) => {
+    const newValue = [...this.props.value];
+    newValue.splice(idx, 1);
+    this.props.onChange(this.props, newValue);
   };
 }

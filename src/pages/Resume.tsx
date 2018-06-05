@@ -27,8 +27,9 @@ type Props = StateProps & ActionProps & RouteComponentProps<{ username?: string 
 
 class Resume extends React.Component<Props> {
   public componentDidMount() {
-    if (!this.props.resume) {
-      this.props.fetchResume(this.props.username);
+    const { resume, username, isOwner } = this.props;
+    if (!resume) {
+      this.props.fetchResume(isOwner ? undefined : username);
     }
   }
 

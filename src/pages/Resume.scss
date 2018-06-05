@@ -41,7 +41,7 @@ $main-item-margin-bottom: 30px;
     }
 
     &-left {
-      max-width: 880px;
+      max-width: 860px;
       padding-right: 20px;
       margin-right: 20px;
 
@@ -67,7 +67,7 @@ $main-item-margin-bottom: 30px;
     }
 
     &-right {
-      width: 220px;
+      width: 240px;
 
       &-contact {
         font-size: 18px;
@@ -268,8 +268,13 @@ $main-item-margin-bottom: 30px;
 
 // Hide some things during print
 @media print {
+  body {
+    background: var(--resume-bg);
+  }
+
   .Header,
-  .Footer {
-    display: none;
+  .Footer,
+  .Resume-controls {
+    display: none !important;
   }
 }

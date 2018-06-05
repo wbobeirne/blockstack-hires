@@ -31,7 +31,6 @@ export default class SingleField extends React.PureComponent<Props> {
           />
         ) : isTextarea ? (
           <TextArea
-            fluid
             value={value}
             placeholder={description}
             onChange={this.handleChange}

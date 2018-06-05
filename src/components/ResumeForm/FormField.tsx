@@ -18,7 +18,7 @@ export default class FormField extends React.PureComponent<Props> {
           <SingleField
             {...field}
             key={field.name}
-            value={value[field.name]}
+            value={value[field.name] || ''}
             onChange={this.handleFieldChange}
           />
         ))}

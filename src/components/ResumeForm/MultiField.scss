@@ -17,11 +17,19 @@
 
   &-fields {
     &-field {
+      position: relative;
+
       &.is-single {
+        display: flex;
         margin-bottom: 5px;
 
+        .SingleField {
+          flex: 1;
+          margin-bottom: 0;
+        }
+
         &:last-child {
-          margin-bottom: 20px;
+          margin-bottom: 10px;
         }
       }
 
@@ -30,7 +38,26 @@
         margin-bottom: 15px;
         border: 1px solid rgba(#000, 0.12);
         border-radius: 4px;
-        background: #FAFAFA;
+        background: rgba(#000, 0.01);
+      }
+
+      &-remove.button {
+        opacity: 0.3;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &.is-form {
+          position: absolute;
+          top: -1px;
+          right: -1px;
+          margin: 0;
+        }
+
+        &.is-single {
+          margin-left: 5px;
+        }
       }
     }
   }
