@@ -151,9 +151,21 @@ module.exports = function(env) {
     minimizer: [
       new UglifyJsPlugin({
         uglifyOptions: {
-          reserved: ['BigInteger', 'ECPair', 'Point']
-        }
-      })
+          mangle: {
+            reserved: [
+              'Buffer',
+              'BigInteger',
+              'Point',
+              'ECPubKey',
+              'ECKey',
+              'sha512_asm',
+              'asm',
+              'ECPair',
+              'HDNode'
+            ],
+          },
+        },
+      }),
     ]
   } : undefined;
 

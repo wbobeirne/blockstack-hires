@@ -14,6 +14,7 @@ import './Resume.scss';
 interface StateProps {
   username: string | null;
   isOwner: boolean;
+  isPreview: boolean;
   resume: ReturnType<typeof getResume>;
   isFetchingResume: ReturnType<typeof getIsFetchingResume>;
   fetchError: ReturnType<typeof getFetchError>;
@@ -27,9 +28,9 @@ type Props = StateProps & ActionProps & RouteComponentProps<{ username?: string 
 
 class Resume extends React.Component<Props> {
   public componentDidMount() {
-    const { resume, username, isOwner } = this.props;
+    const { resume, username, isPreview } = this.props;
     if (!resume) {
-      this.props.fetchResume(isOwner ? undefined : username);
+      this.props.fetchResume(isPreview ? undefined : username);
     }
   }
 
@@ -235,21 +236,25 @@ export default connect((state: ReduxState, ownProps: Props): StateProps => {
   let username = ownProps.match.params.username || null;
   let resume;
   let isOwner;
+  let isPreview;
 
   if (username) {
     resume = getResume(state, username);
     isOwner = user && user.username === username;
+    isPreview = false;
   }
   else {
     username = user ? user.username : null;
     resume = getUserResume(state);
     isOwner = true;
+    isPreview = true;
   }
 
   return {
     resume,
     username,
     isOwner,
+    isPreview,
     isFetchingResume: getIsFetchingResume(state),
     fetchError: getFetchError(state),
   }
