@@ -4,7 +4,7 @@ import { redirectToSignIn, handlePendingSignIn, signUserOut } from 'blockstack';
 import { TypeKeys, UserAction, User } from './types';
 
 export function login() {
-  redirectToSignIn(undefined, undefined, ['store_write']);
+  redirectToSignIn(undefined, undefined, ['store_write', 'publish_data']);
   return {
     type: TypeKeys.LOGIN
   };

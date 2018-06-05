@@ -17,7 +17,8 @@ export function saveResume(resume: Resume) {
           payload: resume,
         });
       })
-      .catch(() => {
+      .catch((err: any) => {
+        console.error('Save resume failed:', err);
         dispatch({
           type: TypeKeys.SAVE_FAILURE,
           payload: 'Failed to save your resume',
@@ -61,7 +62,8 @@ export function fetchResume(username?: string) {
           }
         });
       })
-      .catch(() => {
+      .catch((err: any) => {
+        console.error('Fetch resume failed:', err);
         dispatch({
           type: TypeKeys.FETCH_FAILURE,
           payload: 'Failed to fetch resume',

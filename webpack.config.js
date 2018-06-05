@@ -5,6 +5,7 @@ const convert = require('koa-connect');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = function(env) {
   const isProduction = env === 'production';
@@ -146,6 +147,16 @@ module.exports = function(env) {
     publicPath: '/',
   };
 
+  const optimization = isProduction ? {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          reserved: ['BigInteger', 'ECPair', 'Point']
+        }
+      })
+    ]
+  } : undefined;
+
   // The final config
   const config = {
     devtool,
@@ -161,6 +172,7 @@ module.exports = function(env) {
     performance: {
       hints: isProduction ? 'warning' : false
     },
+    optimization,
     mode: isProduction ? 'production' : 'development',
   };
 
@@ -168,6 +180,7 @@ module.exports = function(env) {
   if (!isProduction) {
     config.serve = {
       add: (app) => {
+        console.log(app);
         // CORS
         app.use((ctx, next) => {
           ctx.set('Access-Control-Allow-Origin', '*');
@@ -175,8 +188,14 @@ module.exports = function(env) {
           return next();
         });
 
-        // History API fallback for webpack-serve
-        app.use(convert(history()));
+        // History API fallback for webpack-serve. Rewrite is for resume
+        // usernames that include dots, like `.id`
+        app.use(convert(history({
+          rewrites: [{
+            from: /^\/resume\/.*$/,
+            to: '/index.html'
+          }]
+        })));
       }
     };
   }

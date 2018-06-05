@@ -230,15 +230,17 @@ class Resume extends React.Component<Props> {
 }
 
 export default connect((state: ReduxState, ownProps: Props): StateProps => {
-  const username = ownProps.match.params.username || null;
+  const user = getUser(state);
+  let username = ownProps.match.params.username || null;
   let resume;
   let isOwner;
 
   if (username) {
     resume = getResume(state, username);
-    isOwner = getUser(state)!.username === username;
+    isOwner = user && user.username === username;
   }
   else {
+    username = user ? user.username : null;
     resume = getUserResume(state);
     isOwner = true;
   }

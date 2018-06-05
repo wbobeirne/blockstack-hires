@@ -51,7 +51,8 @@ npm run build
 
 ## Known Issues
 
-* A username is required to share your resume. Ideally this could be handled better.
+* A username is required to share your resume. I'm pretty sure this is a limitation of Gaia storage.
+* Resumes aren't viewable unless you're logged in with Blockstack. I didn't realize this was a limitation of the Gaia storage implementation, so I was unable to address this in a timely manner.
 * npm is currently complaining about critical vulnerabilities from css loader, which the maintainer is currently working on removing the vulnerable dependency that reads MAC address seeded randomness.
 
 
