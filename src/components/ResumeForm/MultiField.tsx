@@ -30,7 +30,7 @@ export default class MultiField extends React.PureComponent<Props, State> {
     const { label, fields, value } = this.props;
     const { numFields } = this.state;
     const FieldComponent = !!fields ? FormField : SingleField;
-    const defaultValue = !!fields ? FormField : {};
+    const defaultValue = !!fields ? {} : '';
     const fieldType = !!fields ? 'form' : 'single';
     const fieldElements = [];
 
